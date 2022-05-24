@@ -42,6 +42,13 @@ RSpec.describe DiaryEntry do
       end
     end
   
+    context "given a wpm of zero" do
+      it "fails" do
+        diary_entry = DiaryEntry.new("my_title", "one two three")
+        expect { diary_entry.reading_chunk(0, 5) }.to raise_error "Reading speed must be above zero."
+      end
+    end
+    
     context "with a contents unreadbale within the time" do
       it "returns a readbale chunk" do
         diary_entry = DiaryEntry.new("my_title", "one two three")
